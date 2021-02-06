@@ -79,6 +79,9 @@ footer {
   font-size: 14px;
   margin: 7px;
 }
+.card__text--mb {
+  margin-bottom: 32px;
+}
 .card__header {
   color: var(--text-primary);
   font-size: 26px;
@@ -151,3 +154,7 @@ footer {
   transform: translate3d(0, 0, -1em);
 }
 /* </Card> */
+
+.margin {
+  margin: 7px;
+}

@@ -9,7 +9,6 @@
     <title>🎮Giga koks gra🎮</title>
     
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/index.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js" defer></script>
 </head>
 <body class="flex flex--center flex--column">
@@ -73,5 +72,9 @@
             />
         </a>
     </footer>
+
+    <script defer>
+        joinButton.addEventListener('click', () => gameNameWrapper.classList.remove('hidden'))
+    </script>
 </body>
 </html>
