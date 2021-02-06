@@ -1,0 +1,1 @@
+joinButton.addEventListener('click', () => gameNameWrapper.classList.remove('hidden'))
