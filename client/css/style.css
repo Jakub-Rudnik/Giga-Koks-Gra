@@ -2,6 +2,7 @@
 @import "./reset.css";
 @import "./button.css";
 @import "./colors.css";
+@import"./loading.css";
 
 body {
   min-height: 100vh;
@@ -72,7 +73,9 @@ footer {
   color: var(--text-primary);
   border: 2px solid var(--button-border);
   background: var(--white);
+  text-transform: uppercase;
 }
+
 /* </Card> */
 
 .hidden {

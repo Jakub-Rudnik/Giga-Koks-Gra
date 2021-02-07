@@ -6,7 +6,6 @@ const io = require('socket.io')(http, {
         credentials: true
     }
 })
-
 http.listen(4000, function() {
     console.log('Listening on port 4000')
 })

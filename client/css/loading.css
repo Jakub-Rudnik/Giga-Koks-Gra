@@ -1,0 +1,36 @@
+.loading{
+  display:none;
+  box-shadow: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.loading:after {
+  content: '';
+  display: block;
+  font-size: 20px;
+  animation: spinner 2000ms infinite linear;
+  border-radius: 100%;
+  box-shadow:rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  position: absolute;
+  top:50%;
+  left:50%;
+}
+
+/* Animation */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+    width: 0.6em;
+    height: 0.6em;
+  }
+  50%{
+    width: 0.8em;
+    height: 0.8em;
+  }
+    100% {
+    transform: rotate(360deg);
+    width: 0.6em;
+    height: 0.6em;
+  }
+}

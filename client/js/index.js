@@ -6,14 +6,20 @@ const gameState = {
     header: 'Runda pierwsza 👮‍♂️',
     isLoadingData: false,
 }
-
-
 // Methods
 function setBoard(gameInfo) {
     //@Todo switch on gameState change, and display loading spinner or another titles:DDD
     gameHeader.innerText = gameInfo.header;
 }
-
+function closeLoadingScreen(){
+    loadingCard.style.display = "none";
+}
+function loadingScreen(){
+    console.log('ekran ładowania')
+    mainCard.style.display = "none";
+    loadingCard.style.display = "flex";
+    setTimeout(closeLoadingScreen,5000);
+}
 
 // Events listeners
 // Client side listeners
@@ -22,7 +28,9 @@ userNumber.addEventListener('keyup', () => {
 
     if(isNaN(number)) {
         userNumber.value = ''
-    } else if (number < 0 || number > gameState.maxRangeValue) {
+    }if(number > 999){
+        userNumber.value = userNumber.value.slice(0,3)
+    }else if(number < 0 || number > gameState.maxRangeValue) {
         userNumber.value = userNumber.value.slice(0,2)
     }
 })
@@ -33,7 +41,7 @@ gameSubmit.addEventListener('click', event => {
     if(gameState.isLoadingData) return
     gameState.isLoadingData = true
     gameState.stage = -1
-
+    loadingScreen();
     socket.emit('user-choice', parseInt(userNumber.value))
     setBoard(gameState)
 })
