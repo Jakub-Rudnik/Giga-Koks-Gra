@@ -1,4 +1,5 @@
 // Global state
+const socket = io('localhost:3000');
 const gameState = {
     maxRangeValue: 100,
     stage: 1,
@@ -9,6 +10,7 @@ const gameState = {
 
 // Methods
 function setBoard(gameInfo) {
+    //@Todo switch on gameState change, and display loading spinner or another titles:DDD
     gameHeader.innerText = gameInfo.header;
 }
 
@@ -29,12 +31,23 @@ gameSubmit.addEventListener('click', event => {
     event.preventDefault();
     
     if(gameState.isLoadingData) return
-    gameState.isLoadingData = true;
+    gameState.isLoadingData = true
+    gameState.stage = -1
 
-    // @Todo request api call with userNumber.value
+    socket.emit('user-choice', parseInt(userNumber.value))
+    setBoard(gameState)
 })
+
 // Server side listeners
-// @ Todo wait for api call with new gameState and use it in setBoard method
+socket.on('new-game-state', newGameState => {
+    gameState = {...newGameState};
+    setBoard(gameState)
+})
+
+socket.on('game-end', amIWinner => {
+    if (amIWinner) alert('wygrałeś!');
+})
 
 
+// This is where code start
 setBoard(gameState)
