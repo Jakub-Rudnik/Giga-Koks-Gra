@@ -1,7 +1,6 @@
 .loading{
   display:none;
-  box-shadow: none;
-  background-color: transparent;
+  width: 360px;
   position: relative;
 }
 
