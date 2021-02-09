@@ -4,6 +4,15 @@ Frontend - czysty js <br>
 Server - socket.io
 <br>
 <br>
+# Instalacja:
+```bash
+cd server
+npm install
+npm start
+```
+Dodatkowo na kliencie robić na liveserver vscode, port 5500
+<br>
+<br>
 # Zasady:
    1. Tryb duel (zakres 1-100; w przypadku remisu 1-50):
       * Musisz podać większą liczbę niż twój przeciwnik.
