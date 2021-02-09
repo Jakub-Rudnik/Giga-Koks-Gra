@@ -1,6 +1,6 @@
 // Global state
-const socket = io('localhost:3000');
-const gameState = {
+const socket = io('http://127.0.0.1:4000');
+let gameState = {
     maxRangeValue: 100,
     stage: 1,
     header: 'Runda pierwsza 👮‍♂️',
@@ -23,24 +23,21 @@ userNumber.addEventListener('keyup', () => {
 gameSubmit.addEventListener('click', event => {
     event.preventDefault();
     
-    if(gameState.isLoadingData) return
-    gameState.isLoadingData = true
-    gameState.stage = -1
+    // if(gameState.isLoadingData) return
+    // gameState.isLoadingData = true
+    // gameState.stage = -1
     socket.emit('user-choice', parseInt(userNumber.value))
-    changeStage()
-    loadingScreen()
+    console.log('wyslalem');
+    // changeStage()
+    // loadingScreen()
 })
 
 // Server side listeners
-socket.on('new-game-state', newGameState => {
-    gameState = {...newGameState};
-    changeStage()
+socket.on('new-game-state', newGameStateString => {
+    gameState = JSON.parse(newGameStateString);
+    // changeStage()
 })
 
 socket.on('game-end', amIWinner => {
     if (amIWinner) alert('wygrałeś!');
 })
-
-
-// This is where code start
-changeStage()
