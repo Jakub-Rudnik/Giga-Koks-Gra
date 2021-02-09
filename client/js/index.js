@@ -5,11 +5,7 @@ const gameState = {
     stage: 1,
     header: 'Runda pierwsza 👮‍♂️',
     isLoadingData: false,
-    round:['pierwsza','Napierdalanka 😎😎','druga','trzecia','czwarta','piąta'],
 }
-// Methods
-
-
 // Events listeners
 // Client side listeners
 userNumber.addEventListener('keyup', () => {

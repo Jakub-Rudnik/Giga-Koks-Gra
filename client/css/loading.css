@@ -2,6 +2,8 @@
   display:none;
   width: 360px;
   position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
 .loading:after {
@@ -11,9 +13,6 @@
   animation: spinner 2000ms infinite linear;
   border-radius: 100%;
   box-shadow:rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
-  position: absolute;
-  top:50%;
-  left:50%;
 }
 
 /* Animation */

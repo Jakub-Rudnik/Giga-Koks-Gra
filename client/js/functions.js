@@ -1,3 +1,4 @@
+let round=['pierwsza','Napierdalanka 😎😎','druga','trzecia','czwarta','piąta'];
 function changeStage(){
     gameState.header = 'Runda ' + gameState.round[0] + '👮‍♂️';
     gameHeader.innerText = gameState.header;
