@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="authors" content="https://github.com/Jakub-Rudnik/giga-koks-gra/">
+
+    <title>🎮Giga koks gra🎮</title>
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js" defer></script>
+</head>
+<body class="flex flex--center flex--column">
+    <div class="card">
+        <h1 class="card__header">
+            Lepiej upewnij się,<br> że masz zapięte pasy<br>😎😎
+        </h1>
+        <br />
+        <p class="card__text">
+            Stwórz nowy pokój lub dołącz już do istniejącego:
+        </p>
+
+        <div class="flex flex--center flex--column">
+            <!-- <Dołącz do gry> -->
+            <button
+                class="card__button"
+                id="joinButton"
+            >
+                Dołącz do istniejącego lobby
+            </button>
+
+            <div
+                id="gameNameWrapper"
+                class="flex hidden wrapper__inputs"
+            >
+                <input
+                    id="gameName"
+                    type="text"
+                    class="card__input"
+                    placeholder="HASF1A"
+                    maxlength="6"
+                />
+                <button
+                    class="card__button card__button--small"
+                    id="joinButton"
+                >
+                🚪
+                </button>
+            </div>
+            <!-- </Dołącz do gry> -->
+
+            <!-- <Stwórz nową> -->
+            <button class="card__button">
+                Stwórz nowy pokój!
+            </button>
+            <!-- </Stwórz nową> -->
+        </div>
+    </div>
+
+
+    <footer
+        class="flex flex--start"
+    >
+        <a
+            href="https://github.com/Jakub-Rudnik/giga-koks-gra/"
+            target="_blank"
+            rel="noopener"
+        >
+            <img
+                class="footer__image"
+                src="./assets/GitHub-Mark-32px.png"
+            />
+        </a>
+    </footer>
+
+    <script defer>
+        joinButton.addEventListener('click', () => gameNameWrapper.classList.remove('hidden'))
+    </script>
+</body>
+</html>

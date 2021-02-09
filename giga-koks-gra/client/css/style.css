@@ -1,0 +1,97 @@
+@import "./fonts.css";
+@import "./reset.css";
+@import "./button.css";
+@import "./colors.css";
+@import"./loading.css";
+
+body {
+  min-height: 100vh;
+  background-image: url("./../assets/bg.png");
+}
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px;
+}
+
+/* <Flex> */
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex--center {
+  justify-content: center;
+}
+.flex--start {
+  justify-content: flex-start;
+}
+.flex--end {
+  justify-content: flex-end;
+}
+.flex--column {
+  flex-direction: column;
+}
+/* </Flex> */
+
+/* <Card> */
+.card {
+  min-width: 180px;
+  max-width: 360px;
+  min-height: 460px;
+  background-color: var(--white);
+  text-align: center;
+  padding: 14px 14px 28px 14px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.card__text {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 7px;
+}
+.card__text--mb {
+  margin-bottom: 32px;
+}
+.card__header {
+  color: var(--text-primary);
+  font-size: 26px;
+  margin: 7px 0;
+}
+
+.card__input {
+  margin: 28px 7px -21px 7px;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-primary);
+  border: 2px solid var(--button-border);
+  background: var(--white);
+  text-transform: uppercase;
+}
+
+/* </Card> */
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+.gameNameWrapper {
+  visibility: visible;
+}
+
+.wrapper__inputs {
+  margin: 4px 0;
+}
+
+.margin {
+  margin: 7px;
+}
