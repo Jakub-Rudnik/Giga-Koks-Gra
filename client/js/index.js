@@ -28,16 +28,17 @@ gameSubmit.addEventListener('click', event => {
     // gameState.stage = -1
     socket.emit('user-choice', parseInt(userNumber.value))
     console.log('wyslalem');
-    // changeStage()
-    // loadingScreen()
+    openStage();
+    loadingScreen();
 })
 
 // Server side listeners
 socket.on('new-game-state', newGameStateString => {
     gameState = JSON.parse(newGameStateString);
-    // changeStage()
 })
 
 socket.on('game-end', amIWinner => {
     if (amIWinner) alert('wygrałeś!');
 })
+//start functions
+openStage();
