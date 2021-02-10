@@ -31,7 +31,9 @@ gameSubmit.addEventListener('click', event => {
     openStage();
     loadingScreen();
 })
-
+userNumber.addEventListener('focus',()=>{
+    userNumber.classList.add("input__focus");
+})
 // Server side listeners
 socket.on('new-game-state', newGameStateString => {
     gameState = JSON.parse(newGameStateString);

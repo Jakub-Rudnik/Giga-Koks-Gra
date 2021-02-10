@@ -12,9 +12,9 @@ input,
   vertical-align: baseline;
 }
 
-*:focus {
-  outline: 4px dashed #e62737;
-}
+/* *:focus {
+  /* outline: 4px dashed #e62737;
+}*/
 
 /* HTML5 display-role reset for older browsers */
 article,
