@@ -9,5 +9,6 @@ function closeLoadingScreen() {
 function loadingScreen() {
     mainCard.style.display = "none";
     loadingCard.style.display = "flex";
-    setTimeout(closeLoadingScreen, 5000);
+    // setTimeout(closeLoadingScreen, 5000);
 }
+

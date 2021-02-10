@@ -43,6 +43,7 @@ footer {
   min-height: 460px;
   background-color: var(--white);
   text-align: center;
+  border-radius: 20px;
   padding: 14px 14px 28px 14px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -67,13 +68,13 @@ footer {
   padding: 8px 16px;
   line-height: 25px;
   font-size: 14px;
-  border-radius: 6px;
   -webkit-appearance: none;
   font-family: "Open Sans", sans-serif;
   color: var(--text-primary);
-  border: 2px solid var(--button-border);
+  border-bottom: 2px solid var(--button-border);
   background: var(--white);
-  text-transform: uppercase;
+  transition: .3s;
+  border-radius: 0.1em;
 }
 
 /* </Card> */
@@ -94,4 +95,11 @@ footer {
 
 .margin {
   margin: 7px;
+}
+.input__focus{
+  background: var(--button-primary);
+  transition: .3s;
+  border: 2px solid var(--button-border);
+  border-radius: 0.75em;
+
 }
