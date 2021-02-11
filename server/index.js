@@ -1,7 +1,7 @@
 const app = require('express')()
 const http = require('http').createServer(app)
 
-const { newGameState, getPlayerState } = require('./game');
+const { newGameState, getPlayerState, gameLoop } = require('./game');
 
 const destination = '/client/gameOut.html'
 const gameStates = [];
@@ -12,65 +12,6 @@ const io = require('socket.io')(http, {
         credentials: true
     }
 })
-
-
-function gameLoop(gameState, ROOM_NAME) {
-    const { gameInfo, players } = gameState;
-    
-    function stageEnd() {
-        console.log("koniec rundy:" + players[0].playerGuess + " " + players[1].playerGuess)
-
-        if(gameInfo.stage == 1) {
-            gameInfo.stage = 2;
-            gameInfo.timeLeftToEndRound = 15;
-
-        } else if (gameInfo.stage == 2) {
-            gameInfo.stage = 3;
-            gameInfo.timeLeftToEndRound = 10;
-
-        } else if (gameInfo.stage == 3) {
-            gameInfo.stage = -1;
-            //koniec gry
-            if(players[0].playerPoints > players[1].playerPoints) {
-                console.log("wygral 1")
-                players[0].playerRef.emit('end-game', 'win')
-                players[1].playerRef.emit('end-game', 'lost')
-                
-            } else if (players[1].playerPoints > players[0].playerPoints) {
-                console.log("wygral 2")
-                players[1].playerRef.emit('end-game', 'win')
-                players[0].playerRef.emit('end-game', 'lost')
-                
-            } else {
-                console.log("remis")
-                players[0].playerRef.emit('end-game', 'remis')
-                players[1].playerRef.emit('end-game', 'remis')
-            }
-
-            clearInterval(gameInterval);
-            gameStates[ROOM_NAME] = undefined;
-        } else {
-            clearInterval(gameInterval);
-            gameStates[ROOM_NAME] = undefined;
-        }
-    }
-    
-    const gameInterval = setInterval(() => {
-        gameInfo.timeLeftToEndRound -= 3
-        console.log(`tl: ${gameState.gameInfo.timeLeftToEndRound}`);
-
-        if(players[0].playerGuess !== -1 && players[1].playerGuess !== -1) {
-            stageEnd();
-
-        } else if(gameInfo.timeLeftToEndRound < 0) {
-            stageEnd();
-        }
-
-        const playerState = getPlayerState(gameStates[ROOM_NAME]);
-        players[0].playerRef.emit('new-game-state', JSON.stringify(playerState))
-        players[1].playerRef.emit('new-game-state', JSON.stringify(playerState))
-    }, 3000);
-}
 
 
 io.on('connection', socket => {
