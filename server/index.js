@@ -74,8 +74,9 @@ io.on('connection', socket => {
     // wlaczyc timer 15 sekund na wybor lcizby a potem porownac wyniki i odeslac nowa runde
     if(!gameStates[ROOM_NAME].gameInfo.gameStarted
         && gameStates[ROOM_NAME].players[1].playerId !== -1) {
-        gameLoop(gameStates[ROOM_NAME], ROOM_NAME);
-        console.log('rozpoczelem gre');
+        gameLoop(gameStates[ROOM_NAME], ROOM_NAME)
+        gameStates[ROOM_NAME].gameInfo.gameStarted = true
+        console.log('rozpoczelem gre')
     }
 })
 
