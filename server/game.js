@@ -52,11 +52,40 @@ function getPlayerState(gameState) {
     }
 }
 
+function numberComparasion(playerOneGuess, playerTwoGuess) {
+    const guessDifference = 0;
+    const whichPayler = 0;
+
+    if (playerOneGuess > playerTwoGuess) {
+        guessDifference  = playerOneGuess - playerTwoGuess;
+        whichPayler = 1;
+    } else {
+        guessDifference  = playerTwoGuess - playerOneGuess;
+        whichPayler = 2;
+    }
+
+    const pointsWin = 2 + (guessDifference * 0,1);
+
+    if (guessDifference <= 15) {
+        if (whichPayler == 1) {
+            players[0].playerPoints += pointsWin;
+        } else {
+            players[1].playerPoints += pointsWin;
+        }
+    } else {
+        if (whichPayler == 1) {
+            players[0].playerPoints += (playerOneGuess * 0,01);
+        } else {
+            players[1].playerPoints += (playerTwoGuess * 0,01);
+        }
+    }
+}
 
 function gameLoop(gameState, ROOM_NAME) {
     const { gameInfo, players } = gameState;
-    
+
     function stageEnd() {
+        numberComparasion(players[0].playerGuess, players[1].playerGuess)
         console.log("koniec rundy:" + players[0].playerGuess + " " + players[1].playerGuess)
 
         if(gameInfo.stage == 1) {
@@ -74,12 +103,12 @@ function gameLoop(gameState, ROOM_NAME) {
                 console.log("wygral 1")
                 players[0].playerRef.emit('end-game', 'win')
                 players[1].playerRef.emit('end-game', 'lost')
-                
+
             } else if (players[1].playerPoints > players[0].playerPoints) {
                 console.log("wygral 2")
                 players[1].playerRef.emit('end-game', 'win')
                 players[0].playerRef.emit('end-game', 'lost')
-                
+
             } else {
                 console.log("remis")
                 players[0].playerRef.emit('end-game', 'remis')
