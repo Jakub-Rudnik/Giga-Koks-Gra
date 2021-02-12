@@ -52,15 +52,14 @@ footer {
 .card__text {
   color: var(--text-secondary);
   font-size: 14px;
-  margin: 7px;
+  margin: 10px 0 0 0 ;
 }
 .card__text--mb {
   margin-bottom: 32px;
 }
 .card__header {
   color: var(--text-primary);
-  font-size: 26px;
-  margin: 7px 0;
+  font-size: 28px;
 }
 
 .card__input {
