@@ -51,6 +51,7 @@ function getPlayerState(gameState, guess) {
             maxRangeValue: gameInfo.maxRangeValue,
             stage: gameInfo.stage,
             loading: guess > -1,
+            gameStarted: gameInfo.gameStarted,
             header,
         };
     }
