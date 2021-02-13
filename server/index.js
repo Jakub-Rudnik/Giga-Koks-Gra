@@ -54,21 +54,12 @@ io.on('connection', socket => {
         } else {
             gameStates[ROOM_NAME].players[1].playerGuess = userNumber
         }
-
-        //console log player1guess and player2guess
-        if (gameStates[ROOM_NAME].players[0].playerGuess !== -1
-                && gameStates[ROOM_NAME].players[1].playerGuess !== -1) {
-            console.log(player1Id + " " + gameStates[ROOM_NAME].players[0].playerGuess)
-            console.log(player2Id + " " + gameStates[ROOM_NAME].players[1].playerGuess)
-        }
-            
-
         // ogolny state w ktorym jest id player1 czy playerid2
         // sprawdzamy czy nie wyslal drugi raz
         // zapisujemy
     })
 
-    const playerState = getPlayerState(gameStates[ROOM_NAME]);
+    const playerState = getPlayerState(gameStates[ROOM_NAME], -1);
     socket.emit('new-game-state', JSON.stringify(playerState))
 
     // wlaczyc timer 15 sekund na wybor lcizby a potem porownac wyniki i odeslac nowa runde

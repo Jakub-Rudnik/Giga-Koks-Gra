@@ -5,13 +5,13 @@ function newGameState() {
                 playerGuess: -1,
                 playerId: -1,
                 playerRef: null,
-                playerPoints: -1,
+                playerPoints: 0,
             },
             {
                 playerGuess: -1,
                 playerId: -1,
                 playerRef: null,
-                playerPoints: -1,
+                playerPoints: 0,
             },
         ],
         gameInfo: {
@@ -27,7 +27,7 @@ function newGameState() {
 }
 
 
-function getPlayerState(gameState) {
+function getPlayerState(gameState, guess) {
     if(gameState !== undefined) {
         const { gameInfo } = gameState;
     
@@ -39,6 +39,9 @@ function getPlayerState(gameState) {
             case 2:
                 header = 'Runda druga 🚓🚓🚔'
                 break
+            case 3:
+                header = 'Ostatnia 😎🤙🤙'
+                break
             default:
                 break
         } 
@@ -47,37 +50,37 @@ function getPlayerState(gameState) {
             timeLeftToEndRound: gameInfo.timeLeftToEndRound, 
             maxRangeValue: gameInfo.maxRangeValue,
             stage: gameInfo.stage,
+            loading: guess > -1,
             header,
         };
     }
 }
 
-function numberComparasion(playerOneGuess, playerTwoGuess) {
-    const guessDifference = 0;
-    const whichPayler = 0;
+function numberComparasion(gameState) {
+    const [player1, player2] = gameState.players
 
-    if (playerOneGuess > playerTwoGuess) {
-        guessDifference  = playerOneGuess - playerTwoGuess;
-        whichPayler = 1;
-    } else {
-        guessDifference  = playerTwoGuess - playerOneGuess;
-        whichPayler = 2;
+    if(player1.playerGuess === player2.playerGuess) return
+
+    if(player1.playerGuess < 0) {
+        player2.playerPoints += 2.5
+        return
+    }
+    if(player2.playerGuess < 0) {
+        player1.playerPoints += 2.5
+        return
     }
 
-    const pointsWin = 2 + (guessDifference * 0,1);
+    const diff = Math.abs(player1.playerGuess - player2.playerGuess);
+    const playerNumberWin = player1.playerGuess > player2.playerGuess ? 0 : 1;
+    const playerNumberLost = player1.playerGuess > player2.playerGuess ? 1 : 0;
 
-    if (guessDifference <= 15) {
-        if (whichPayler == 1) {
-            players[0].playerPoints += pointsWin;
-        } else {
-            players[1].playerPoints += pointsWin;
-        }
+    if (diff <= 15) {
+        const pointsWin = 1 + (diff * 0,1);
+        gameState.players[playerNumberWin].playerPoints += pointsWin
+
     } else {
-        if (whichPayler == 1) {
-            players[0].playerPoints += (playerOneGuess * 0,01);
-        } else {
-            players[1].playerPoints += (playerTwoGuess * 0,01);
-        }
+        const pointsLost = gameState.players[playerNumberLost].playerGuess * 0.01
+        gameState.players[playerNumberLost].playerPoints -= pointsLost
     }
 }
 
@@ -85,13 +88,13 @@ function gameLoop(gameState, ROOM_NAME) {
     const { gameInfo, players } = gameState;
 
     function stageEnd() {
-        numberComparasion(players[0].playerGuess, players[1].playerGuess)
-        console.log("koniec rundy:" + players[0].playerGuess + " " + players[1].playerGuess)
+        numberComparasion(gameState)
+        console.log("podane liczby:" + players[0].playerGuess + " " + players[1].playerGuess)
+        console.log("liczba punktow:" + players[0].playerPoints + " " + players[1].playerPoints)
 
         if(gameInfo.stage == 1) {
             gameInfo.stage = 2;
             gameInfo.timeLeftToEndRound = 15;
-
         } else if (gameInfo.stage == 2) {
             gameInfo.stage = 3;
             gameInfo.timeLeftToEndRound = 10;
@@ -121,6 +124,9 @@ function gameLoop(gameState, ROOM_NAME) {
             clearInterval(gameInterval);
             gameState = undefined;
         }
+
+        players[0].playerGuess = -1;
+        players[1].playerGuess = -1;
     }
     
     const gameInterval = setInterval(() => {
@@ -134,9 +140,10 @@ function gameLoop(gameState, ROOM_NAME) {
             stageEnd();
         }
 
-        const playerState = getPlayerState(gameState);
-        players[0].playerRef.emit('new-game-state', JSON.stringify(playerState))
-        players[1].playerRef.emit('new-game-state', JSON.stringify(playerState))
+        const player1State = getPlayerState(gameState, players[0].playerGuess)
+        const player2State = getPlayerState(gameState, players[1].playerGuess)
+        players[0].playerRef.emit('new-game-state', JSON.stringify(player1State))
+        players[1].playerRef.emit('new-game-state', JSON.stringify(player2State))
     }, 3000);
 }
 
