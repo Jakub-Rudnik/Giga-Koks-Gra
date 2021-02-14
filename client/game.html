@@ -10,11 +10,15 @@
     
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js" defer></script>
+    <script src="./js/animation.js" defer></script>
     <script src="./js/functions.js" defer></script>
     <script src="./js/index.js" defer></script>
+    <script src="./node_modules/animejs/lib/anime.min.js"></script>
 </head>
 <body class="flex flex--center flex--column">
-    <div id="mainCard" class="card flex flex--center flex--column">
+    <div id="wrapper">
+    </div>
+    <div id="mainCard" class="card card__size flex flex--center flex--column">
         <h1
             class="card__header"
             id="gameHeader"
@@ -23,18 +27,18 @@
         <p class="card__text">
             Czas pozostały do końca
         </p>
-        <p class="card__text card__text--mb">
-            ⏰ 00.0000
+        <p class="card__text card__text--mb" id="timer">⏰ Pozostało:
         </p>
 
         <div class="margin">
             <h3>
-                Wybierz liczbę z zakresu 0-100
+                Wpisz liczbę z zakresu 0-100
             </h3>
             <input
                 id="userNumber"
-                type="number"
+                type="text"
                 class="card__input"
+                maxlength="3"
             />
             <button
                 id="gameSubmit"

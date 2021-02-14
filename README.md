@@ -4,12 +4,18 @@ Frontend - czysty js <br>
 Server - socket.io
 <br>
 <br>
-# Instalacja:
+# Instalacja serwera:
 ```bash
 cd server
 npm install
 npm start
 ```
+#Instalacja anime.js
+```bash
+cd client
+npm install animejs
+```
+
 Dodatkowo na kliencie robić na liveserver vscode, port 5500
 <br>
 <br>

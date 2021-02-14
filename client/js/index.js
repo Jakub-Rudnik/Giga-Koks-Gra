@@ -9,17 +9,19 @@ let gameState = {
 // Events listeners
 // Client side listeners
 userNumber.addEventListener('keyup', () => {
-    const number = parseInt(userNumber.value)
-
+    const number = Number(userNumber.value)
     if(isNaN(number)) {
-        userNumber.value = ''
-    }if(number > 999){
-        userNumber.value = userNumber.value.slice(0,3)
-    }else if(number < 0 || number > gameState.maxRangeValue) {
-        userNumber.value = userNumber.value.slice(0,2)
+        userNumber.value = "";
+        errorFn();
+    }if(number < 0 ||number > gameState.maxRangeValue ){
+        userNumber.value = userNumber.value.slice(0,2);
+        errorFn();
+    }if (number == 0 || userNumber.value.slice(0,1) == 0){
+        userNumber.value = "";
+        errorFn();
     }
-})
 
+})
 gameSubmit.addEventListener('click', event => {
     event.preventDefault();
     

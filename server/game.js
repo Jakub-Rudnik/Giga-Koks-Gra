@@ -16,7 +16,7 @@ function newGameState() {
         ],
         gameInfo: {
             maxRangeValue: 100,
-            stage: 1,
+            stage:1,
             timeLeftToEndRound: 20,
             gameStarted: false,
             startTimer: false,
@@ -34,7 +34,7 @@ function getPlayerState(gameState, guess) {
         let header;
         switch(gameInfo.stage) {
             case 1:
-                header = 'Runda pierwsza 👮‍♂️'
+                header = 'Runda pierwsxza 👮‍♂️'
                 break
             case 2:
                 header = 'Runda druga 🚓🚓🚔'
@@ -51,6 +51,7 @@ function getPlayerState(gameState, guess) {
             maxRangeValue: gameInfo.maxRangeValue,
             stage: gameInfo.stage,
             loading: guess > -1,
+            gameStarted: gameInfo.gameStarted,
             header,
         };
     }
